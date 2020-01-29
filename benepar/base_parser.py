@@ -196,9 +196,9 @@ class BaseParser(object):
                         model['vocab'] = f.read()
 
             if isinstance(model, dict):
-                graph_def = tf.GraphDef.FromString(model['model'])
+                graph_def = tf.compat.v1.GraphDef.FromString(model['model'])
             else:
-                graph_def = tf.GraphDef.FromString(model)
+                graph_def = tf.compat.v1.GraphDef.FromString(model)
             tf.import_graph_def(graph_def, name='')
 
         self._sess = tf.Session(graph=self._graph)
